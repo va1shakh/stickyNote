@@ -2,7 +2,10 @@ import { useEffect, useState } from "react"
 import NoteList from "./component/NoteList"
 
 function App(){
-    const [notes, setNotes] = useState([]);
+    const [notes, setNotes] = useState(() => {
+        const savedNotes = JSON.parse(localStorage.getItem('notes'));
+        return savedNotes ? savedNotes:[];
+    })
     
     useEffect(() => {
         localStorage.setItem('notes', JSON.stringify(notes));
