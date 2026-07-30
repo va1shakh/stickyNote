@@ -4,10 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 export default defineConfig({
+  base: '/stickyNote/',
   plugins: [react(), tailwindcss()],
-  server: {
-    watch: {
-      usePolling: true,
-    },
-  },
 });
