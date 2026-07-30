@@ -2,7 +2,7 @@ import { Trash2 } from "lucide-react";
 
 function Note({note, dltNote}) {
   return (
-    <div className="bg-[#f1c8ff] p-4 rounded-xl gap-5 flex flex-col justify-between shadow-lg"> {/* Note card */}
+    <div style={{backgroundColor: note.color}} className=" p-4 rounded-xl gap-5 flex flex-col justify-between shadow-lg"> {/* Note card */}
       <h2>{note.title}</h2> {/* Title */}
       <p className="whitespace-normal break-word">{note.text}</p> {/* notes */}
       <div className="flex items-center justify-between"> {/* date and delete button */}

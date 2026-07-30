@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react"
 import NoteList from "./component/NoteList"
+import ColorSelector from "./component/ColorSelector";
 
 function App(){
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedColor, setSelectedColor] = useState('#f1c8ff');
+
     const [notes, setNotes] = useState(() => {
         const savedNotes = JSON.parse(localStorage.getItem('notes'));
         return savedNotes ? savedNotes:[];
@@ -16,7 +20,8 @@ function App(){
             id: Date.now(),
             title: title, 
             text: noteText,
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleDateString(),
+            color: selectedColor
         };
         setNotes([...notes, newNote]);
     }
@@ -32,7 +37,16 @@ function App(){
                 notes = { notes }
                 addNote = {addNote} 
                 dltNote = {dltNote}
+                setIsOpen = {setIsOpen}
             />
+            <div className="flex justify-center items-center"> {/*color popup window*/}
+                {isOpen && (
+                    <ColorSelector 
+                        setIsOpen = {setIsOpen} 
+                        setSelectedColor = {setSelectedColor} 
+                    />
+                )}
+            </div>
         </div>
     )
 }

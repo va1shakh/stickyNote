@@ -1,6 +1,7 @@
 import { useState } from "react"
+import { Palette } from 'lucide-react';
 
-function AddNote({addNote}){
+function AddNote({addNote, setIsOpen}){
     const [title, setTitle] =useState('');
     const [noteText, setNoteText] = useState('');
     const [remaining, setRemaining] = useState(200);
@@ -40,6 +41,9 @@ function AddNote({addNote}){
             </div>
             <div className="flex items-center justify-between p-2 text-white"> {/*remaining and save button*/}
                 <small className="text-sm">{remaining} remaining</small>
+                <button className="bg-white text-[#560045] p-2 px-4 rounded-lg hover:bg-[#fef0fb] cursor-pointer text-lg shadow-lg flex justify-between gap-2" onClick={() => setIsOpen(true)}>
+                    color<Palette />
+                </button>
                 <button 
                     className="bg-white text-[#560045] p-2 px-4 rounded-lg hover:bg-[#fef0fb] cursor-pointer text-lg shadow-lg" onClick={handleSave}>
                     save
