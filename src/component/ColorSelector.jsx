@@ -9,9 +9,9 @@ function ColorSelector({ setIsOpen, setSelectedColor }) {
       <button className="rounded-4xl bg-[#D9F2D9] w-15 h-15 cursor-pointer focus:border-3" onClick={() => setSelectedColor('#D9F2D9')}></button>
       <button className="rounded-4xl bg-[#FDE2E4] w-15 h-15 cursor-pointer focus:border-3" onClick={() => setSelectedColor('#FDE2E4')}></button>
       <button className="rounded-4xl bg-[#E8DDF5] w-15 h-15 cursor-pointer focus:border-3" onClick={() => setSelectedColor('#E8DDF5')}></button>
-      <div className="flex justify-end">
+      <div className="flex justify-end ml-auto">
         <button
-          className="border-2 rounded-4xl px-4 py-2 w-15 h-15 bg-[#310041] text-white cursor-pointer hover:bg-[#420756] text-2xl"
+          className=" rounded-lg px-4 py-2 w-16 h-13 bg-[#e3e3e3] text-black cursor-pointer hover:bg-[#cecdce] text-lg shadow-2xl"
           onClick={() => setIsOpen(false)}
         >
           Ok

@@ -39,14 +39,12 @@ function App(){
                 dltNote = {dltNote}
                 setIsOpen = {setIsOpen}
             />
-            <div className="flex justify-center items-center"> {/*color popup window*/}
-                {isOpen && (
+            {isOpen && (<div className="fixed inset-0 flex flex-col items-center justify-center"> {/*color popup window*/}
                     <ColorSelector 
                         setIsOpen = {setIsOpen} 
                         setSelectedColor = {setSelectedColor} 
                     />
-                )}
-            </div>
+            </div>)}
         </div>
     )
 }

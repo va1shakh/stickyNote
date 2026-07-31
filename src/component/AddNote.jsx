@@ -39,7 +39,7 @@ function AddNote({addNote, setIsOpen}){
                     onChange={handleNoteText}
                 />
             </div>
-            <div className="flex items-center justify-between p-2 text-white"> {/*remaining and save button*/}
+            <div className="flex items-center justify-between p-2 text-white flex-wrap gap-2"> {/*remaining and save button*/}
                 <small className="text-sm font-inter">{remaining} remaining</small>
                 <button className="font-outfit bg-white text-[#560045] p-2 px-4 rounded-lg hover:bg-[#fef0fb] cursor-pointer text-xl shadow-lg flex justify-between gap-2" onClick={() => setIsOpen(true)}>
                     color<Palette />
