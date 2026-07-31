@@ -39,7 +39,7 @@ function App(){
                 dltNote = {dltNote}
                 setIsOpen = {setIsOpen}
             />
-            {isOpen && (<div className="fixed inset-0 flex flex-col items-center justify-center"> {/*color popup window*/}
+            {isOpen && (<div className="fixed inset-0 flex flex-col items-center justify-center bg-black/50"> {/*color popup window*/}
                     <ColorSelector 
                         setIsOpen = {setIsOpen} 
                         setSelectedColor = {setSelectedColor} 
