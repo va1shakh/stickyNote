@@ -1,73 +1,88 @@
-import { useEffect, useState } from "react"
-import NoteList from "./component/NoteList"
+import { useEffect, useState } from "react";
+import NoteList from "./component/NoteList";
 import ColorSelector from "./component/ColorSelector";
 import SearchBar from "./component/SearchBar";
+import Background from "./component/Background";
 
-function App(){
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedColor, setSelectedColor] = useState('#f1c8ff');
-    const [searchText, setSearchText] = useState('');
+function App() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("#f1c8ff");
+  const [searchText, setSearchText] = useState("");
 
-    const [notes, setNotes] = useState(() => {
-        const savedNotes = JSON.parse(localStorage.getItem('notes'));
-        return savedNotes ? savedNotes:[];
-    })
-    
-    useEffect(() => {
-        localStorage.setItem('notes', JSON.stringify(notes));
-    }, [notes])
+  const [notes, setNotes] = useState(() => {
+    const savedNotes = JSON.parse(localStorage.getItem("notes"));
+    return savedNotes ? savedNotes : [];
+  });
 
-    const addNote = (title, noteText) => {
-        const newNote = {
-            id: Date.now(),
-            title: title, 
-            text: noteText,
-            date: new Date().toLocaleDateString(),
-            color: selectedColor
-        };
-        setNotes([...notes, newNote]);
-    }
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
-    const dltNote = (id) => {
-        const deletedNotes = notes.filter((note) => id !== note.id);
-        setNotes(deletedNotes);
-    }
+  const addNote = (title, noteText) => {
+    const newNote = {
+      id: Date.now(),
+      title: title,
+      text: noteText,
+      date: new Date().toLocaleDateString(),
+      color: selectedColor,
+    };
+    setNotes([...notes, newNote]);
+  };
 
-    const filteredNotes = notes.filter((note) => {
-        return note.title.toLowerCase().includes(searchText.toLowerCase()) ||
-               note.text.toLowerCase().includes(searchText.toLowerCase())
-    })
+  const dltNote = (id) => {
+    const deletedNotes = notes.filter((note) => id !== note.id);
+    setNotes(deletedNotes);
+  };
 
-    const displayedNotes = searchText === '' ? notes:filteredNotes;
+  const filteredNotes = notes.filter((note) => {
+    return (
+      note.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      note.text.toLowerCase().includes(searchText.toLowerCase())
+    );
+  });
 
-    // debugging
-    // console.log(displayedNotes);
+  const displayedNotes = searchText === "" ? notes : filteredNotes;
 
-    return(
-        <div className="mr-2 ml-2 p-4">
-            {/*search bar*/}
-            <div className="mb-4">
-                <SearchBar setSearchText = {setSearchText} />
-            </div>
+  // debugging
+  // console.log(displayedNotes);
 
-            {/*notes*/}
-            <NoteList 
-                displayedNotes = { displayedNotes }
-                addNote = {addNote} 
-                dltNote = {dltNote}
-                setIsOpen = {setIsOpen}
-            />
+  return (
+    <div className="p-4 relative  min-h-screen overflow-hidden">
+      {/* background */}
+      <div className="absolute inset-0 -z-10 bg-black">
+        <Background
+          colorStops={["#7cff67", "#B497CF", "#5227FF"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={1}
+        />
+      </div>
 
-            {/*color popup window*/}
-            {isOpen && (<div className="fixed inset-0 flex flex-col items-center justify-center bg-black/50">
-                    <ColorSelector 
-                        setIsOpen = {setIsOpen} 
-                        setSelectedColor = {setSelectedColor} 
-                    />
-            </div>)}
-            {/* debugging */}
-            {/* <h1 className="text-red-500">{filteredNotes}</h1> */}
+      {/*search bar*/}
+      <div className="mb-4">
+        <SearchBar setSearchText={setSearchText} />
+      </div>
+
+      {/*notes*/}
+      <NoteList
+        displayedNotes={displayedNotes}
+        addNote={addNote}
+        dltNote={dltNote}
+        setIsOpen={setIsOpen}
+      />
+
+      {/*color popup window*/}
+      {isOpen && (
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-black/50">
+          <ColorSelector
+            setIsOpen={setIsOpen}
+            setSelectedColor={setSelectedColor}
+          />
         </div>
-    )
+      )}
+      {/* debugging */}
+      {/* <h1 className="text-red-500">{filteredNotes}</h1> */}
+    </div>
+  );
 }
-export default App
+export default App;
